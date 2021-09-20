@@ -1,3 +1,5 @@
+#include <stdio.h>
+#include <math.h>
 #define TYPE double
 #define FLAG "%7.3f"
 
@@ -124,7 +126,9 @@ void QRdecompose(matrix *A, matrix *Q, matrix *R) {
 	matrix *S = create_matrix(A->rows, 1);
 	
 	for (int i = 0; i < A->cols; i++) {
-	
+		printf("\n");
+		printf("outer cycle n = %d\n", i);
+
 		//Qi = Ui
 		matrix_copy_column(A,i,Q,i);
 		
@@ -133,9 +137,13 @@ void QRdecompose(matrix *A, matrix *Q, matrix *R) {
 			//r[j,i] = Qj^T * Ui
 			matrix_copy_column(Q,j,T,0);
 			matrix_copy_column(A,i,S,0);
+
 			TYPE r = 0;
 			for (int k=0; k<A->rows; k++) {
+				//printf("k = %d, T[k]*S[k] = %f\n", k, T->array[k][0] * S->array[k][0]);
+				printf("k = %d, T[k] = %f, S[k] = %f, T[k]*S[k] = %f\n", k, T->array[k][0], S->array[k][0], S->array[k][0]*T->array[k][0]);
 			  r += T->array[k][0] * S->array[k][0];
+			  printf("r = %f\n", r);
 			}
 			
 			R->array[j][i] = r;
@@ -156,6 +164,23 @@ void QRdecompose(matrix *A, matrix *Q, matrix *R) {
 	
 	//free_matrix(T);
 	//free_matrix(S);
+
+}
+
+
+int main(int argc, const char **argv) {
+
+  TYPE a[3][3] = { { 12, -51, 4 }, { 6, 167, -68 }, { -4, 24, -41 } };
+
+  matrix *A = create_matrix_from_array(3,3,a);
+  matrix *Q = create_matrix(3,3);
+  matrix *R = create_matrix(3,3);
+  QRdecompose(A,Q,R);
+
+  print_matrix(A);
+  print_matrix(Q);
+  print_matrix(R);
+  return 0;
 
 }
 
