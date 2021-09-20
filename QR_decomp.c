@@ -38,8 +38,8 @@ static inline int QR_dec( double *A, double *Q, double *R, int rows, int cols) {
 				//r += T[3*k + 0] * S[3*k + 0];
 			}
 
-			//R[3*j + i] = r;
-			R[3*i + j] = r;
+			R[3*j + i] = r;
+			//R[3*i + j] = r;
 
 			for(kk=0; kk<rows; kk++) {
 				// multiply vector T by r
