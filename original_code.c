@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <math.h>
+#include <stdlib.h>
 #define TYPE double
 #define FLAG "%7.3f"
 
@@ -142,19 +143,24 @@ void QRdecompose(matrix *A, matrix *Q, matrix *R) {
 			for (int k=0; k<A->rows; k++) {
 				//printf("k = %d, T[k]*S[k] = %f\n", k, T->array[k][0] * S->array[k][0]);
 				printf("k = %d, T[k] = %f, S[k] = %f, T[k]*S[k] = %f\n", k, T->array[k][0], S->array[k][0], S->array[k][0]*T->array[k][0]);
+			  printf("ok1\n");
 			  r += T->array[k][0] * S->array[k][0];
 			  printf("r = %f\n", r);
+			  printf("ok1\n");
 			}
 			
+			printf("ok\n");
 			R->array[j][i] = r;
 			// subtract works subtracting the the second argument to the first
 			// mutiply in this case is the 0-th column of T multiplied by r
 			matrix_column_subtract(Q,i,matrix_column_multiply(T,0,r),0);
+			printf("ok subtract\n");
 		
 		}
 		
 		//r[i,i] = ||Qi||
 		R->array[i][i] = vector_length(Q,i);
+		printf("ok norm\n");
 		//Qi = Qi/r[i,i]
 		// divide the i-th element od Q by the third argument
 		matrix_column_divide(Q,i,R->array[i][i]);
@@ -170,11 +176,11 @@ void QRdecompose(matrix *A, matrix *Q, matrix *R) {
 
 int main(int argc, const char **argv) {
 
-  TYPE a[3][3] = { { 12, -51, 4 }, { 6, 167, -68 }, { -4, 24, -41 } };
+  float a[3][4] = {{ 12, -51, 4, -3 }, { 6, 16, -68, 2}, { -4, 24, -41, 4 }};
 
-  matrix *A = create_matrix_from_array(3,3,a);
+  matrix *A = create_matrix_from_array(3,4,a);
   matrix *Q = create_matrix(3,3);
-  matrix *R = create_matrix(3,3);
+  matrix *R = create_matrix(3,4);
   QRdecompose(A,Q,R);
 
   print_matrix(A);

@@ -1,19 +1,20 @@
-#include <stdio.h>
-#include <math.h>
-#include "other_QR.h"
+#include "QR_decomp_as_py.h"
+
 
 void main() {
-	const int ROW = 2;
+	const int ROW = 4;
 	const int COL = 3;
 
-	double A[2][3] = {{1,-51,4},{6,16,-68}};
-	//,{-4,4,-41}};
-	
-	double Q[2][3]; 
-	double R[3][3];
+	//double A[3][4] = {{0.9284,-1,0,-1},{1.9823,2.02,-1,-1},{-1,1.0,-5.09,1.1}};
+	//double Q[3][4] = {{0,0,0,0},{0,0,0,0},{0,0,0,0}}; 
+	//double R[4][4] = {{0,0,0,0},{0,0,0,0},{0,0,0,0},{0,0,0,0}};
 
+	double A[4][3] = {{0.928,-1,0,-1},{1.9823,2.02,-1,-1},{-1,1.0,-5.09,1.1}};
+	double Q[4][3] = {{0,0,0,0},{0,0,0,0},{0,0,0,0}}; 
+	double R[3][3] = {{0,0,0},{0,0,0},{0,0,0}};
 
-	int i,jj;
+	QR_dec(A,Q,R,ROW,COL);
+	//int i,jj;
 
 	//printf("Q before trans = \n");
 	//for (i=0; i<3; i++) {
@@ -22,20 +23,6 @@ void main() {
 	//		printf("%f ", Q[i][jj]);
 	//	}
 	//}
-
-	printf("A = \n");
-	for (i=0; i<ROW; i++) {
-		printf("\n");
-		for (jj=0; jj<COL; jj++) {
-			printf("%f ", A[i][jj]);
-		}
-	}
-	printf("\n\n");
-
-
-	printf("\n");
-
-	QR_dec(A,Q,R,ROW,COL);
 
 	//printf("A = \n");
 	//for (i=0; i<ROW; i++) {
@@ -46,44 +33,47 @@ void main() {
 	//}
 	//printf("\n\n");
 
+
+	printf("\n");
+
+
 	//printf("A = \n");
 	//for (i=0; i<ROW; i++) {
 	//	printf("\n");
 	//	for (jj=0; jj<COL; jj++) {
-	//		printf("%f ", A[i + 3*jj]);
+	//		printf("%f ", A[i][jj]);
 	//	}
 	//}
 	//printf("\n\n");
 
+	//printf("Q = np.array([ \n");
+	//for (i=0; i<ROW; i++) {
+	//	printf("[");
+	//	for (jj=0; jj<COL; jj++) {
+	//		printf("%f ,", Q[i][jj]);
+	//	}
+	//	printf("],\n");
+	//}
+	//printf("])");
 
-	printf("Q = np.array([ \n");
-	for (i=0; i<ROW; i++) {
-		printf("[");
-		for (jj=0; jj<COL; jj++) {
-			printf("%f ,", Q[i][jj]);
-		}
-		printf("],\n");
-	}
-	printf("])");
+	//printf("\n\n");
 
-	printf("\n\n");
+	//printf("R = np.array([ \n");
+	//for (i=0; i<COL; i++) {
+	//	printf("[");
+	//	for (jj=0; jj<COL; jj++) {
+	//		printf("%f ,", R[i][jj]);
+	//	}
+	//	printf("], \n");
+	//}
+	//printf("])");
 
-	printf("R = np.array([ \n");
-	for (i=0; i<COL; i++) {
-		printf("[");
-		for (jj=0; jj<COL; jj++) {
-			printf("%f ,", R[i][jj]);
-		}
-		printf("], \n");
-	}
-	printf("])");
-
-	printf("\n\n");
+	//printf("\n\n");
 
 
-	int k, l,  j;
+	//int k, l,  j;
 
-	float res[4];
+	//float res[4];
 
 	//for(j=0; j<COL; j++) {
 	//	for(i=0; i<ROW; i++) {
@@ -132,5 +122,6 @@ void main() {
 	printf("\n");
 
 }
+
 
 

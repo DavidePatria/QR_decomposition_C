@@ -1,6 +1,6 @@
 import numpy as np
 
-A = np.array([[12,-51,4,-2, 0],[6,16,-68,-1,2],[-4,24,-41,5,-7]]);
+A = np.array([[12,-51,4,-2],[6,16,-68,-1],[-4,24,-41,5]]);
 
 righe = A.shape[0]
 colonne = A.shape[1]
@@ -12,11 +12,15 @@ R = np.zeros([colonne,colonne])
 
 for i in np.arange(0,A.shape[1],1):
     Q[:,i] = A[:,i]
+    print("col Q[:,i]", Q[:,i])
 
     for j in range(i):
         R[j,i] = np.dot(Q[:,j],A[:,i])
+
         #print("R[j,i] =", R[j,i])
-        Q[:,i] = Q[:,i] - np.dot(R[j,i],Q[:,j])
+        Q[:,i] -= np.dot(R[j,i],Q[:,j])
+
+
     R[i,i] = np.linalg.norm(Q[:,i])
     Q[:,i] = Q[:,i] / R[i,i]
 

@@ -20,8 +20,8 @@ void QR_dec( double *A, double *Q, double *R, int rows, int cols) {
 	float r;
 	
 	for (i=0; i<cols; i++) {
-		printf("\n");
-		printf("outer cycle n = %d\n", i);
+		//printf("\n");
+		//printf("outer cycle n = %d\n", i);
 		
 		//copy column
 		for(ii=0; ii<rows; ii++) {
