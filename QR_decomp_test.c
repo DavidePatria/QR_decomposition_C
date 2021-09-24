@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <math.h>
-#include "other_QR.h"
+#include "QR_decomp.h"
 
 void main() {
 	const int ROW = 2;
