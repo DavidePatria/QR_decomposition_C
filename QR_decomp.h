@@ -13,6 +13,9 @@ void QR_dec( double *A, double *Q, double *R, int rows, int cols) {
 	// As already mentioned in the README the matrices orders are: A mxn => Q mxn , R nxn and rank(A) must be n
 	// The matrix A[m x n] = [A_00, A_01, ... A_0n;  ...... ; A_m0, ... , A_mn] can be accessed as a vector that has 
 	// all its rows consecutively written in a long vector, even if passed as a *A and defined as A[m][n].
+	//
+	// If A(mxn) has m<n the function still returs R(mxn) and Q(nxn), but it is enough to get the submatrices Q(mxm)
+	// and R(mxn) as a valid decomposition. This is what also octave does.
 	 
 
 	//vectors for internal coputations
